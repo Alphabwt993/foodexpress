@@ -16,7 +16,7 @@
       📄 grants.sql                    # Создание роли inspector и выдача прав доступа
    📄 constraints.md                   # Обоснование всех ограничений (CHECK, UNIQUE, FK, NOT NULL)
    📄 tests.md                         # Протокол самопроверки (заполненный)
-   📄 ponomarenko_food.backup    # Бинарный бэкап базы данных (pg_dump -Fc)
+   📄 foodexpress_ponomarenko.backup    # Бинарный бэкап базы данных (pg_dump -Fc)
 📄 README.md                           # Этот файл
 
 ```
@@ -47,7 +47,7 @@ createdb -U postgres food_db
 
 2. Восстановите из архива:
 bash
-pg_restore -U postgres -d food_db -c db/ponomarenko_food.backup
+pg_restore -U postgres -d food_db -c db/foodexpress_ponomarenko.backup
 
 3. Примените скрипт с правами (обязательно, так как роли не всегда попадают в бэкап):
 bash
@@ -61,7 +61,7 @@ psql -U postgres -d food_db -f db/schema/grants.sql
 
 Выполните скрипт tests.md (или SQL-версию из него):
 SET ROLE inspector;
-SET search_path TO ponomarenko_food, exts;
+SET search_path TO foodexpress_ponomarenko, exts;
 
 CALL erase_test_data();
 CALL insert_test_data(N);
